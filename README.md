@@ -4,7 +4,47 @@ A comprehensive migration journey from .NET Framework 4.8 to .NET 9, transformin
 
 ## 🎯 Project Purpose
 
-This project serves as both a practical learning exercise for Azure development (AZ-204) and a portfolio demonstration of enterprise-grade application modernization. It documents the complete migration path from a traditional ASP.NET MVC application to a modern, containerized, cloud-native solution—preserving full functionality while progressively enhancing architecture, performance, and scalability.
+First and foremost, this is a learning laboratory. I am creating it because I learn better by having challenging, near-real projects than from spoon-fed tutorials. Secondarily, it is a portfolio project, and I truly hope that if you are a hiring manager or talent scout, you will find it interesting. If I am successful, this project may serve as a model for other developers who face the challenge of a migration like this, but even better if it serves as a model for learning design.
+
+By design, it is extremely challenging, requiring me to learn many new skills simultaneously and practice them repeatedly, including innumerable practice iterations that would not be possible in a production project.
+
+### Why This Approach?
+
+**This project intentionally models enterprise migration practices at scale**, not a greenfield rewrite. While the MVC Music Store is small enough to rebuild from scratch in .NET 9 in a fraction of the time, **that's not the point**. The point is that even though this is a tiny amount of functionality, migrating it from MVC5 and Framework 4.8 to .NET 9 is approximately the same process as would be applied if it were a much more substantial enterprise app.
+
+### Intentional Investment Areas
+
+This project invests heavily in practices that would be essential for enterprise migrations:
+
+**Baseline Measurement & Observability**
+
+- Application Insights integration before migration begins - Learning design note: by actually recording baseline and changes throughout the phases of the project, Application Insights knowledge is grounded in real-ish experience. This applies to all of the testing and performance metrics in the project.
+- Performance metrics captured at each phase boundary
+- Comparative analysis to prove no degradation
+- *Rationale:* Enterprises need proof that migrations don't harm production workloads
+
+**Comprehensive Testing**
+
+- Integration test suite established before platform changes
+- Test coverage as a safety net during breaking changes
+- *Rationale:* Confidence to refactor with impunity
+
+**Professional Process & Documentation**
+
+- Phase-by-phase planning with clear decision points
+- Git workflow practicing team collaboration patterns
+- Living documentation capturing challenges and solutions
+- *Rationale:* Large teams need reproducible processes and knowledge transfer
+
+**Security & Compliance Tracking**
+
+- SAST/SCA baselines established pre-migration
+- Post-migration comparison showing security improvements
+- *Rationale:* Regulatory requirements demand measurable security posture
+
+### Learning Through Realistic Constraints
+
+This project prioritizes **learning transferable enterprise patterns** over raw development speed. The goal is not to ship the Music Store as efficiently as possible—it's to demonstrate the methodology for safely migrating **important legacy applications** when the stakes are high and the margin for error is zero.
 
 ## 📖 Project Origin and V2 Approach
 
@@ -12,21 +52,9 @@ This project serves as both a practical learning exercise for Azure development 
 
 This is the **second iteration** of this migration project, rebuilt with a clean intellectual property foundation:
 
-**Phase 1 (Original)**: I began this migration using an existing MVC5 repository that adapted Microsoft's original MVC3 tutorial. After completing integration testing, I discovered licensing concerns that made it unsuitable for portfolio use.
+**Phase 1 (Original)**: I began this migration using an existing MVC5 repository that adapted Microsoft's original MVC3 tutorial. After completing integration testing, I discovered licensing concerns that made it unsuitable for portfolio use. (And here you see what I mean about iterations. A significant failure requires me to drop back 2 weeks and re-start. Extravagantly expensive but rich learning potential.)
 
 **Phase 2 (V2 - This Project)**: I rebuilt the seed project from scratch using Microsoft's original MVC Music Store tutorial (MVC3) and adapted it to MVC5 myself. The new seed project is available at [steveLeVesconte/MvcMusicStore](https://github.com/steveLeVesconte/MvcMusicStore).
-
-### Why Version 2 Will Be Faster
-
-The first iteration wasn't wasted effort—it provided invaluable learning that accelerates V2:
-
-- ✅ **Testing strategy proven**: Integration + unit test hybrid approach validated
-- ✅ **Documentation patterns established**: Living docs vs. frozen planning docs
-- ✅ **Technical challenges solved**: OWIN/Identity/EF migration paths understood
-- ✅ **Azure patterns identified**: IaC templates, CI/CD patterns, deployment strategies
-- ✅ **Risk areas mapped**: Known pitfalls in Phases 4-5 documented
-
-**Expected timeline compression**: Phase 1 (Foundation) will compress from 3-4 weeks to ~1-2 weeks since testing patterns and tooling choices are already proven. Subsequent phases should similarly accelerate with established architectural patterns.
 
 ## 🗃️ Technical Evolution
 
@@ -55,50 +83,51 @@ The first iteration wasn't wasted effort—it provided invaluable learning that 
 
 ## 📊 Migration Phases
 
-| Phase | Focus | Key Deliverables | Est. Duration |
-|---|---|---|---|
-| **Phase 0** | Planning | Repository structure, branching strategy, documentation framework | 3-5 days |
-| **Phase 1** | Foundation | Test coverage (xUnit), Application Insights, local performance baselines | 1-2 weeks |
-| **Phase 2** | Azure Migration | Azure SQL Database, App Service deployment, CI/CD pipeline, IaC (Bicep), security baseline | 2-3 weeks |
-| **Phase 3** | Azure Validation | Smoke testing, performance benchmarking, load testing, environment analysis | 1 week |
-| **Phase 4** | Platform Migration | .NET 9 conversion, EF Core migration, ASP.NET Core Identity, middleware pipeline | 3-4 weeks |
-| **Phase 5** | Modern Auth | OAuth 2.0/PKCE, external identity providers, Azure Key Vault secrets | 1-2 weeks |
-| **Phase 6** | Observability | OpenTelemetry tracing, structured logging, APM dashboards, health checks | 1-2 weeks |
-| **Phase 7** | Scalability | Distributed caching, async I/O, connection pooling, resilience patterns | 2-3 weeks |
-| **Phase 8** | API-First | RESTful Web API, API Management, Service Bus integration, distributed tracing | 2-3 weeks |
-| **Phase 9** | Cloud Native | Docker containers, Azure Container Registry, Container Apps, managed identity | 2-3 weeks |
-| **Phase 10** | DevOps Excellence | Multi-stage pipelines, automated security scanning, DORA metrics, compliance reporting | 1-2 weeks |
+| Phase        | Focus              | Key Deliverables                                             | Est. Duration |
+| ------------ | ------------------ | ------------------------------------------------------------ | ------------- |
+| **Phase 0**  | Planning           | Repository structure, branching strategy, documentation framework | 3-5 days      |
+| **Phase 1**  | Foundation         | Test coverage (xUnit), Application Insights, local performance baselines, lint baseline for seed project (no remediation for seed project), manual linting for added code like integration tests | 1-2 weeks     |
+| **Phase 2**  | Azure Migration    | Azure SQL Database, App Service deployment, CI/CD pipeline, IaC (Bicep), security baseline, automated linting for added code | 2-3 weeks     |
+| **Phase 3**  | Azure Validation   | Smoke testing, performance benchmarking, load testing, environment analysis | 1 week        |
+| **Phase 4**  | Platform Migration | .NET 9 conversion, EF Core migration, ASP.NET Core Identity, middleware pipeline, full project automated linting | 3-4 weeks     |
+| **Phase 5**  | Modern Auth        | OAuth 2.0/PKCE, external identity providers, Azure Key Vault secrets | 1-2 weeks     |
+| **Phase 6**  | Observability      | OpenTelemetry tracing, structured logging, APM dashboards, health checks | 1-2 weeks     |
+| **Phase 7**  | Scalability        | Distributed caching, async I/O, connection pooling, resilience patterns | 2-3 weeks     |
+| **Phase 8**  | API-First          | RESTful Web API, API Management, Service Bus integration, distributed tracing | 2-3 weeks     |
+| **Phase 9**  | Cloud Native       | Docker containers, Azure Container Registry, Container Apps, managed identity | 2-3 weeks     |
+| **Phase 10** | DevOps Excellence  | Multi-stage pipelines, automated security scanning, DORA metrics, compliance reporting | 1-2 weeks     |
 
 **Total Estimated Timeline**: 4-6 months (part-time development)
 
 ## 📈 Current Status
 
-**Active Phase**: Phase 0 - Planning and Setup  
-**Progress**: Repository initialized, branching strategy defined, documentation framework established  
-**Last Updated**: November 9, 2025  
-**Status**: Phase 0 approximately 70% complete
+**Active Phase**: Phase 0 - Planning and Setup **Progress**: Repository initialized, branching strategy defined, documentation framework established **Last Updated**: November 9, 2025 **Status**: Phase 0 approximately 70% complete
 
 ### Seed Project Technical Stack
 
 The new seed project ([steveLeVesconte/MvcMusicStore](https://github.com/steveLeVesconte/MvcMusicStore)) is a clean-room implementation with:
 
 **Core Framework:**
+
 - .NET Framework 4.8
 - ASP.NET MVC 5.2.9
 - Entity Framework 6.5.1
 
 **Authentication & Security:**
+
 - ASP.NET Identity 2.2.4 (Core, EntityFramework, Owin)
 - OWIN 4.2.3 middleware pipeline
 - Cookie-based authentication
 
 **Front-End:**
+
 - Bootstrap 5.2.3
 - jQuery 3.7.0
 - jQuery Validation 1.19.5
 - Modernizr 2.8.3
 
 **Key Features:**
+
 - Role-based authorization (Admin/User)
 - Shopping cart with session state
 - E-commerce checkout workflow
@@ -106,12 +135,13 @@ The new seed project ([steveLeVesconte/MvcMusicStore](https://github.com/steveLe
 - Seeded with test data
 
 **Default Admin Credentials** (for local testing):
+
 - Email: `admin@musicstore.com`
 - Password: `Admin123!`
 
 See the [seed project repository](https://github.com/steveLeVesconte/MvcMusicStore) for complete setup instructions and technical details.
 
-## 🎓 Skills Demonstrated
+## 🎓 Skills Exercised
 
 ### Azure Services (AZ-204 Aligned)
 
@@ -119,138 +149,60 @@ See the [seed project repository](https://github.com/steveLeVesconte/MvcMusicSto
 - **Storage:** Azure SQL Database, Azure Cache for Redis
 - **Security:** Key Vault, Managed Identity, OAuth 2.0/PKCE
 - **Integration:** API Management, Service Bus
-- **Monitoring:** Application Insights, Azure Monitor, OpenTelemetry
-- **DevOps:** Azure DevOps, GitHub Actions, Infrastructure as Code (Bicep)
+- **Monitoring:** Application Insights, OpenTelemetry
 
-### Software Engineering Practices
+### Development Practices
 
-- **Migration Methodology:** Incremental platform upgrades with continuous validation
-- **Testing Strategy:** Unit testing, integration testing, load testing
-- **Observability:** Distributed tracing, structured logging, business metrics
-- **Security:** Secrets management, dependency scanning, SAST integration, baseline establishment
-- **Performance:** Baseline capture, comparative analysis, optimization validation
-- **Documentation:** Decision rationale, troubleshooting guides, runbooks
-- **Version Control:** Trunk-based development, conventional commits, branch protection
+- **Testing:** xUnit, integration testing, automated testing pipelines
+- **CI/CD:** GitHub Actions, multi-stage deployments, environment promotion
+- **IaC:** Bicep templates, resource provisioning, environment management
+- **Security:** SAST/SCA scanning, secret management, compliance automation
+- **Architecture:** Microservices patterns, distributed systems, cloud-native design
 
-### New Skills Acquired Through This Project
+### Migration Expertise
 
-Coming into this project, I had no prior experience with:
-- **Security Scanning:** SAST/SCA tools, vulnerability management workflows
-- **Secrets Management:** Azure Key Vault, managed identities, production secret handling
-- **Modern Git Workflows:** Professional branching strategies, PR templates, commit conventions
-- **Infrastructure as Code:** Bicep templates, declarative infrastructure
-- **Container Orchestration:** Docker multi-stage builds, Azure Container Apps
-- **Distributed Systems:** Service Bus patterns, distributed tracing, cache-aside patterns
+- **Platform Migration:** .NET Framework to .NET 9 conversion
+- **Data Migration:** EF6 to EF Core, database modernization
+- **Identity Migration:** ASP.NET Identity 2.x to Core, external auth integration
+- **Containerization:** Docker, container registry, orchestration
+- **Observability:** Distributed tracing, structured logging, metrics
 
-These areas represent net-new learning captured and documented throughout the migration phases.
-
-## 🔐 Security Approach
-
-This project demonstrates security-conscious development practices throughout the migration journey, using freely available tools to establish baselines and track improvements.
-
-**Important Context:** This is an educational baseline approach suitable for learning and portfolio demonstration—not a comprehensive enterprise security program. The goal is to demonstrate the value of establishing measurable security baselines before major migrations and tracking improvements afterward.
-
-### Phase 2: Security Baseline (Framework 4.8 + Azure)
-
-At the end of Phase 2, before platform migration begins, a security baseline is established:
-
-- **Dependency Vulnerability Scanning:** Using `dotnet list package --vulnerable` and GitHub Dependabot to identify known CVEs in NuGet packages
-- **SAST Analysis:** SonarCloud integration to detect code-level security hotspots (SQL injection risks, XSS vulnerabilities, weak cryptography)
-- **Secrets Detection:** GitHub Secret Scanning to prevent credential exposure
-- **Documentation:** Baseline report capturing all findings for comparison post-migration
-
-**Rationale:** Establishing a security baseline before the .NET 9 migration allows us to quantify security improvements and catch issues before they're obscured by the complexity of platform changes. This "before snapshot" becomes valuable evidence of migration benefits.
-
-### Phase 5: Secrets Management (Production)
-
-- **Azure Key Vault:** Connection strings, API keys, OAuth client secrets
-- **Managed Identity:** Password-less authentication between Azure services
-- **Environment Separation:** Dev/staging/production secret isolation
-
-### Phase 10: Security Validation & Metrics
-
-After completing the .NET 9 migration and cloud-native transformation:
-
-- **Re-scan:** Run the same security tools against the modernized codebase
-- **Comparison:** Document vulnerability reduction (Framework 4.8 → .NET 9)
-- **CI/CD Integration:** Automated security scans as quality gates
-- **Compliance:** Security scan results archived for audit purposes
-
-**Expected Outcome:** Measurable security posture improvement demonstrated through before/after vulnerability counts, with all high/critical issues resolved.
-
-### Tools & Budget
-
-All security tooling uses free tiers suitable for public repositories:
-
-- **GitHub Dependabot:** FREE (automatic)
-- **.NET CLI Vulnerability Scanning:** FREE (built-in)
-- **SonarCloud:** FREE (public repositories)
-- **GitHub Secret Scanning:** FREE (public repositories)
-- **Azure Key Vault:** ~$1-5/month (only actual cost)
-
-**Time Investment:** ~1 day for Phase 2 baseline, ~2-3 days for Phase 10 comprehensive security implementation.
-
-## 📈 Success Metrics
-
-Each phase captures quantifiable outcomes:
-
-- **Performance:** Response times, throughput, cache hit ratios (local → Azure → Container Apps)
-- **Quality:** Test coverage %, uptime %, migration success rate
-- **Security:** Vulnerability trends (baseline → post-migration), security scan pass rate, secrets management compliance
-- **Scalability:** Auto-scaling validation, load testing results
-- **DevOps:** DORA metrics (deployment frequency, lead time, MTTR)
-
-**Overall Success Criteria:**
-- ✅ Complete functional parity maintained throughout
-- ✅ Zero data loss across all migrations
-- ✅ Measurable performance improvements documented
-- ✅ Security posture improvement demonstrated (Framework 4.8 baseline → .NET 9)
-- ✅ All security scans passed (no high/critical vulnerabilities in final state)
-- ✅ Comprehensive migration playbook for reusability
-
-## 🚀 Getting Started
+## 🛠️ Getting Started
 
 ### Prerequisites
 
-- Visual Studio 2022 or later
-- .NET Framework 4.8 SDK (for seed project)
-- .NET 9 SDK (for modern version - Phase 4+)
-- SQL Server LocalDB
-- Azure subscription (for Phases 2+)
-- Docker Desktop (for Phase 9+)
+- Visual Studio 2022 (17.8+) or VS Code
+- .NET SDK 9.0
+- SQL Server LocalDB or Azure SQL Database
+- Azure subscription (for cloud phases)
+- Git
 
-### Quick Start with Seed Project
-
-For a complete setup guide, see the [seed project repository](https://github.com/steveLeVesconte/MvcMusicStore).
-
-**Abbreviated steps:**
+### Local Development Setup
 
 ```bash
-git clone https://github.com/steveLeVesconte/MvcMusicStore.git
-cd MvcMusicStore
-# Open MvcMusicStore.sln in Visual Studio
-# Press F5 to run
-# Login with admin@musicstore.com / Admin123!
+# Clone the repository
+git clone https://github.com/steveLeVesconte/legacy-to-modern-dotnet-migration-v2.git
+cd legacy-to-modern-dotnet-migration-v2
+
+# Checkout main branch
+git checkout main
+
+# Restore dependencies
+dotnet restore
+
+# Run database migrations
+dotnet ef database update
+
+# Run the application
+dotnet run --project src/MvcMusicStore
 ```
 
-### Working with This Migration Project
-
-This repository contains:
-
-```
-├── docs/                    # Phase documentation and migration guides
-├── src/                     # Application source code
-├── tests/                   # Test projects
-├── infrastructure/          # Bicep templates and deployment scripts
-├── .github/workflows/       # CI/CD pipeline definitions
-├── PROJECT-LOG.md          # Development log and decisions
-├── project-outline.md      # Detailed phase breakdown
-└── README.md               # This file
-```
+The application will be available at `https://localhost:5001`
 
 ### Branch Strategy: Simplified Trunk-Based Development
 
 **Core Principles:**
+
 1. **Main branch protection**: Always stable, deployable code
 2. **Short-lived feature branches**: Merge quickly (1-3 days max)
 3. **Phase branches as milestones**: Only when needed for major work
@@ -261,6 +213,7 @@ This repository contains:
 Format: `<type>/<phase>-<short-description>`
 
 Types:
+
 - `feat/` - New features or capabilities
 - `fix/` - Bug fixes
 - `docs/` - Documentation only
@@ -269,92 +222,150 @@ Types:
 - `chore/` - Maintenance tasks (dependencies, config)
 
 Examples:
+
 - `feat/phase-1-integration-tests`
 - `fix/phase-4-ef-migration-bug`
 - `docs/phase-2-deployment-guide`
 
 ## 📚 Documentation
 
-- **PROJECT-LOG.md** - [need link here] - Chronological development log with decisions and challenges
-- **project-outline.md** - [need link here] - Comprehensive phase-by-phase migration plan
+This project maintains a systematic documentation approach designed for ~1 hour/week maintenance while providing comprehensive project context. See [DOCUMENTATION-PLAN.md](https://claude.ai/chat/DOCUMENTATION-PLAN.md) for complete documentation system details, templates, and maintenance workflows.
+
+### Key Documents
+
+**Core Documentation:**
+
+- **[PROJECT-LOG.md](https://claude.ai/chat/PROJECT-LOG.md)** - Daily work journal capturing decisions, blockers, and time investment
+- **[project-outline.md](https://claude.ai/chat/project-outline.md)** - Comprehensive phase-by-phase migration plan (frozen after Phase 0)
+- **[KNOWN-LIMITATIONS.md](https://claude.ai/chat/KNOWN-LIMITATIONS.md)** - Transparent inventory of constraints and deferred work
+- **[QUICK-REFERENCE.md](https://claude.ai/chat/QUICK-REFERENCE.md)** - Personal cheat sheet for daily commands and conventions
 - **[Seed Project Repository](https://github.com/steveLeVesconte/MvcMusicStore)** - Clean-room MVC5 implementation
+
+**Phase-Specific Documentation:**
+
+- **docs/phase-NN/README.md** - Actual implementation approach and outcomes for each phase
+- **docs/phase-NN/TROUBLESHOOTING.md** - Complex problems and solutions (created when needed)
+
+**Architecture Decision Records:**
+
+- **docs/adr/NNNN-decision-title.md** - Immutable records of significant technical decisions
 
 ### Documentation Philosophy
 
-**Living Documents** (always current):
-- PROJECT-LOG.md - Daily progress and decision journal
-- README.md - Project overview and current status
-- KNOWN-LIMITATIONS.md - [need link here] - Known issues and scope boundaries
+**Living Documents** (maintained regularly):
 
-**Frozen Planning Documents** (historical reference):
-- Phase planning documents - Captured during Phase 0, preserved as historical context
-- Initial estimates and approaches - Shows evolution of thinking during implementation
+- **PROJECT-LOG.md** - Updated daily or per work session (~10-15 min)
+- **README.md** - Updated at phase transitions and major milestones
+- **KNOWN-LIMITATIONS.md** - Updated as issues discovered or resolved
+- **QUICK-REFERENCE.md** - Updated when you look something up repeatedly
+
+**Frozen Planning Documents** (historical reference, never updated):
+
+- **project-outline.md** - Original phase planning from Phase 0
+- **work-execution-plan.md** - Initial execution strategy
+- Phase planning documents captured during Phase 0
+
+**Semi-Frozen Documents** (updated rarely):
+
+- **TESTING-STRATEGY.md** - Established in Phase 1, minor refinements only
+- **CONTRIBUTING.md** - Created in Phase 0, minor updates as needed
+- **dependency-inventory.md** - Captured in Phase 1, frozen thereafter
 
 **Source of Truth**:
-- Git commit history and tags
-- GitHub Issues and Pull Requests
-- Phase-specific README files in `docs/phase-N/`
+
+- Git commit history and tags - Detailed change tracking
+- GitHub Issues and Pull Requests - Task management and discussion
+- Phase-specific README files in `docs/phase-NN/` - Implementation outcomes
+
+### Documentation System Benefits
+
+This structured approach provides:
+
+- **For Future Me:** Quick context recovery when returning to the project
+- **For Interviewers:** Evidence of professional documentation practices and decision-making process
+- **For Learning:** Clear record of what worked, what didn't, and why
+- **For Portfolio:** Demonstrates ability to maintain enterprise-grade documentation standards
+
+The complete documentation system includes templates, decision trees, maintenance checklists, and weekly health checks. See [DOCUMENTATION-PLAN.md](https://claude.ai/chat/DOCUMENTATION-PLAN.md) for full details.
 
 ## 🤖 AI-Assisted Development
 
-This project leverages AI tools (Claude, GitHub Copilot) as a **productivity 
-multiplier** and learning accelerator throughout the development lifecycle. AI assistance is used 
-strategically, with clear boundaries between AI-generated content, AI-assisted 
-work, and human-driven decisions. A key feature of my process is measurable prompt-context and prompt effectiveness  through meta-prompts. See LinkedIn article [TBD] for context quality measurement  process.
+This project leverages AI tools (Claude, GitHub Copilot) as a **productivity multiplier** and learning accelerator throughout the development lifecycle. AI assistance is used strategically, with clear boundaries between AI-generated content, AI-assisted work, and human-driven decisions. But seriously, since the main goal is learning (not production), stopping and iterating on questions until I understand the output is a key behavior—not just prompt-and-paste.
 
- **"What's measured improves"** — Peter F. Drucker
+A key feature of my process is measurable prompt-context and prompt effectiveness through meta-prompts. See LinkedIn article [TBD] for context quality measurement process.
+
+**"What's measured improves"** — Peter F. Drucker
 
 ### AI Usage by Development Activity
 
 #### **Documentation & Planning** (AI-Heavy)
+
 AI generates initial drafts, which I review, validate, and customize:
+
 - Technical documentation and migration guides
 - Architecture decision records (ADR) exploration
 - Implementation strategies and phase planning
 - Test case ideation and edge case discovery
 - README sections and project narrative
 
-**My Role**: Design prompts, provide curated context, validate accuracy, make final edits, 
-ensure alignment with project goals.
+**My Role**: Design prompts, provide curated context, validate accuracy, make final edits, ensure alignment with project goals. Fighting with the AI. The AI has its own quirks and biases. Part of my job is to notice when it drifts from my purpose and impose my will and knowledge. Also, I must be sure I am learning from every AI-generated step both to improve my own ability to perform the same task in the future and to improve my ability to create prompts and curate context for similar tasks.
 
 #### **Implementation** (AI-Assisted)
+
 AI suggests solutions and boilerplate, which I evaluate and adapt:
+
 - Refactoring recommendations
 - Bug investigation and debugging assistance
 - Test implementation patterns
 - Configuration file templates
 
-**My Role**: Choose and generate curated context for prompts.  Write final code, validate correctness, adapt to project context, ensure maintainability and security.
+**My Role**: Choose and generate curated context for prompts. Write final code, validate correctness, adapt to project context, ensure maintainability and security. (See "My Role" above for expanded "The AI has its quirks and biases...")
 
 #### **Decision-Making** (Human-Driven)
+
 I make all strategic and architectural decisions, sometimes using AI for exploration:
+
 - Final architectural choices and technology stack selection
 - Security and compliance decisions
 - Business logic design and validation
 - Performance optimization trade-offs
 - Quality standards and acceptance criteria
 
-**My Role**: Full ownership. AI may provide options or analysis, but I decide.
+**My Role**: Full ownership. AI may provide options or analysis, but I decide (or I learn nothing!)
 
 ### Transparency and Attribution
 
 **What's in This Repository**:
+
 - A combination of human-written and AI-assisted documentation (generated by AI, reviewed and edited by me)
 - A combination of human-written and AI-suggested code patterns (evaluated and adapted by me)
 - AI-influenced architecture (explored with AI, decided by me)
 
 **What's NOT in This Repository**:
-- The prompts themselves (proprietary methodology)
+
+- 100% of the prompts themselves - I just cannot add that much noise to the project, but I will select some prompts I consider instructive and representative and add them to the prompts folder.
 - Unedited AI outputs (all content reviewed and validated)
 - AI-generated code without human review
 
-## 🎯 Who This Is For
+### Naming Strategy for Prompt Files
 
-**Developers Planning Migrations:** Offers a reusable methodology with detailed implementation guidance, troubleshooting strategies, and lessons learned for similar .NET Framework to .NET Core/9 migrations.
+**Format:** `phase-NN-<type>-<subject>.md`
+
+**Types:**
+
+- `doc` - Documentation generation
+- `code` - Code/script generation
+- `decision` - Decision analysis
+
+**Location:** `/docs/prompts/phase-NN-type-subject.md`
+
+## 🎯 Who This Is For
 
 **Future Me:** Serves as a technical reference, keeps the project organized, and provides material for technical discussions about cloud-native transformation.
 
 **Technical Interviewers:** Provides concrete examples of architectural decision-making, problem-solving approaches, and hands-on experience with enterprise modernization challenges.
+
+**Developers Planning Migrations:** Offers a reusable methodology with detailed implementation guidance, troubleshooting strategies, and lessons learned for similar .NET Framework to .NET Core/9 migrations.
 
 ## 📄 Version 2 Improvements
 
@@ -386,10 +397,8 @@ This project is built upon Microsoft's MVC Music Store tutorial, reimplemented a
 - Microsoft's .NET migration documentation and tooling
 - Azure Developer community for best practices and patterns
 
----
+------
 
-**Project Repository**: [legacy-to-modern-dotnet-migration-v2](https://github.com/steveLeVesconte/legacy-to-modern-dotnet-migration-v2)  
-**Migration Tool**: Microsoft .NET Upgrade Assistant  
-**Reference Architecture**: Microsoft Cloud Adoption Framework for Azure
+**Project Repository**: [legacy-to-modern-dotnet-migration-v2](https://github.com/steveLeVesconte/legacy-to-modern-dotnet-migration-v2) **Migration Tool**: Microsoft .NET Upgrade Assistant **Reference Architecture**: Microsoft Cloud Adoption Framework for Azure
 
-_Note: This is Version 2 of the migration project, rebuilt with a clean-room seed implementation based directly on Microsoft's tutorial._
+*Note: This is Version 2 of the migration project, rebuilt with a clean-room seed implementation based directly on Microsoft's tutorial.*
