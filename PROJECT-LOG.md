@@ -75,6 +75,37 @@ Copy this template for each new entry:
 
 ## Project History
 
+---
+### 2025-11-11 | Phase 0 - Update CONTRIBUTING.md for V2 Workflow
+
+**Key Decisions Made**
+- Simplified contribution guidelines to match V2 trunk-based development
+- Removed V1 complex branch hierarchy references
+- Maintained professional standards while optimizing for solo development
+- Emphasized learning and portfolio objectives in contribution scope
+
+**Work Completed**
+- [x] Updated branch naming conventions to V2 format (feat/phase-N-description)
+- [x] Simplified PR workflow documentation (direct to main, squash and merge)
+- [x] Enhanced scope boundaries (in-scope vs out-of-scope)
+- [x] Improved AI-assisted development guidance
+- [x] Ensured consistency with docs/process/git-strategy-v2.md
+- [x] Added clear decision tree for contributors
+
+**Discoveries & Risks**
+- Discovery: Original CONTRIBUTING.md had V1 complexity that would confuse contributors
+- Learning: Clear scope boundaries prevent wasted effort on out-of-scope suggestions
+- Risk mitigation: Explicit documentation that this is learning-first, not production-first
+
+**Next Session Goals**
+- Add DOCUMENTATION-PLAN.md (Issue #14)
+- Initialize KNOWN-LIMITATIONS.md (Issue #12)
+- Complete Phase 0 documentation foundation
+
+**Related**: Issue #2
+
+---
+
 ### 2025-11-07 | Phase 0 - Git Strategy Documentation
 
 **Key Decisions Made**
