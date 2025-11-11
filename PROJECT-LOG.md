@@ -103,6 +103,79 @@ Copy this template for each new entry:
 - Complete Phase 0 documentation foundation
 
 **Related**: Issue #2
+### 2025-11-11 | Phase 0 - PROJECT-LOG and README Catchup
+
+**Key Decisions Made**
+- Decided NOT to create GitHub issue for README enhancements retroactively
+- Recognized git workflow not yet muscle memory; committing to stricter discipline
+- Consolidated three documentation updates into single atomic commit
+
+**Work Completed**
+- [x] Documented missed merge: PR #7 (git strategy documentation)
+- [x] Documented missed merge: PR #9 (AI-assisted development section)
+- [x] Enhanced README.md with major improvements:
+  - Expanded project purpose and learning-first philosophy
+  - Added rationale for migrate-vs-rebuild approach
+  - Documented intentional investment areas
+  - Enhanced AI transparency and boundaries
+  - Added prompt file naming strategy
+  - Improved overall structure and flow
+
+**Discoveries & Risks**
+- Risk: Git workflow habits not yet established, leading to out-of-sync documentation
+- Discovery: Multiple uncommitted changes accumulated without tracking
+- Mitigation: This catchup commit brings everything current; recommitting to workflow discipline
+
+**Next Session Goals**
+- Continue with remaining Phase 0 issues (#1, #2, #5)
+- Practice proper git workflow on each subsequent change
+- Update DOCUMENTATION-PLAN.md and CONTRIBUTING.md for V2 strategy
+
+---
+### 2025-11-07 | Phase 0 - AI-Assisted Development Documentation
+
+**Key Decisions Made**
+- Enhanced transparency about AI role in development process
+- Defined clear boundaries: AI-generated vs AI-assisted vs human-driven work
+- Emphasized learning focus over raw productivity
+
+**Work Completed**
+- [x] Expanded AI-Assisted Development section in README (PR #9)
+- [x] Added activity-by-activity breakdown of AI usage
+- [x] Documented context curation and meta-prompting approaches
+- [x] Clarified that learning requires understanding, not just copying
+- [x] Added prompt file naming strategy and storage location
+
+**Discoveries & Risks**
+- Discovery: Initial section was too vague about AI boundaries
+- Learning: Portfolio readers want specifics about AI contribution levels
+- Learning: Transparency builds trust more than hiding AI assistance
+
+**Next Session Goals**
+- (Already completed - this entry added retroactively during catchup)
+
+---
+### 2025-11-07 | Phase 0 - Git Strategy Documentation
+
+**Key Decisions Made**
+- Adopted simplified trunk-based development (V2 strategy)
+- Feature branches merge directly to main (no intermediate phase branches unless needed)
+- Squash and merge for feature branches (clean main history)
+- Conventional commits format mandatory
+- Three living documents only (PROJECT-LOG, README, KNOWN-LIMITATIONS)
+
+**Work Completed**
+- [x] Added comprehensive git strategy documentation (Issue #4, PR #7)
+- [x] Created docs/process folder with 5 strategy documents
+- [x] Established workflow patterns for entire project
+
+**Discoveries & Risks**
+- V1 workflow was too complex for solo developer (70% overhead)
+- Squash and merge protects from "WIP panic commits" in PR history
+- Documentation maintenance burden was unsustainable in V1 (3-4 hrs/week)
+
+**Next Session Goals**
+- (Already completed - this entry added retroactively during catchup)
 
 ---
 
