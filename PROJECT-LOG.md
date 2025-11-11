@@ -76,6 +76,40 @@ Copy this template for each new entry:
 ## Project History
 
 ---
+### 2025-11-11 | Phase 0 - Add DOCUMENTATION-PLAN.md
+
+**Key Decisions Made**
+- Created comprehensive documentation control center as master reference
+- Optimized for sustainability: 1 hour/week maintenance budget
+- Established clear decision trees to reduce "where does this go?" friction
+- Defined three-tier approach: Living, Phase-Specific, Process docs
+- Chose MADR format for ADRs (Markdown Any Decision Records)
+
+**Work Completed**
+- [x] Created DOCUMENTATION-PLAN.md with complete document inventory
+- [x] Added templates for all document types (PROJECT-LOG, ADRs, phase READMEs, etc.)
+- [x] Documented maintenance schedules and time budgets
+- [x] Created decision trees: "Should I create ADR/TROUBLESHOOTING/Issue?"
+- [x] Added phase-by-phase documentation workflow checklists
+- [x] Included weekly health check (10-minute sanity check)
+- [x] Documented complete directory structure
+- [x] Added documentation anti-patterns section
+
+**Discoveries & Risks**
+- Discovery: V1 documentation burden was 3-4 hours/week (unsustainable)
+- Learning: Decision trees prevent analysis paralysis and wasted time
+- Learning: Templates reduce friction and improve consistency
+- Risk mitigation: Time budgets make documentation burden explicit and manageable
+
+**Next Session Goals**
+- Initialize KNOWN-LIMITATIONS.md (Issue #12)
+- Begin Phase 0 wrap-up activities
+- Consider Phase 0 retrospective
+
+**Related**: Issue #14
+
+---
+
 ### 2025-11-11 | Phase 0 - Update CONTRIBUTING.md for V2 Workflow
 
 **Key Decisions Made**
