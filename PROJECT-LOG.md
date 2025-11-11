@@ -76,6 +76,38 @@ Copy this template for each new entry:
 ## Project History
 
 ---
+### 2025-11-11 | Phase 0 - Initialize KNOWN-LIMITATIONS.md
+
+**Key Decisions Made**
+- Created living document for transparent constraint tracking
+- Start with template structure; populate organically during execution
+- Include both "Current" and "Resolved" sections to show follow-through
+- Use standardized entry format to ensure completeness
+- Seven categories cover all common limitation types
+
+**Work Completed**
+- [x] Created KNOWN-LIMITATIONS.md with complete template structure
+- [x] Defined entry format: Issue, Impact, Workaround, Deferred To, Discovered, Tracking, Resolved
+- [x] Established seven categories: Technical Debt, Performance, Security, Feature Gaps, Browser Compatibility, Testing Gaps, Documentation Gaps
+- [x] Added purpose statement and "Last Updated" header
+- [x] Documented that resolved limitations remain visible with links
+
+**Discoveries & Risks**
+- Learning: Empty limitations document at start shows proactive planning
+- Learning: "Resolved" section demonstrates follow-through and learning
+- Discovery: Explicit "Deferred To: Never (with rationale)" prevents scope creep
+- Learning: Template ensures consistent, complete limitation documentation
+
+**Next Session Goals**
+- Complete remaining Phase 0 issues if any
+- Consider Phase 0 retrospective and lessons learned
+- Update README.md with Phase 0 completion status
+- Plan Phase 1 kickoff
+
+**Related**: Issue #12
+
+---
+
 ### 2025-11-11 | Phase 0 - Add DOCUMENTATION-PLAN.md
 
 **Key Decisions Made**
